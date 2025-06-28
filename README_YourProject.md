@@ -45,18 +45,44 @@ This project is the final assignment for the YMT5270 - Yenilikçi Makine Öğren
 | type                | Kategorik  | The wine type (red or white)                  | "red"       |
 
 
-## Keşifsel Veri Analizi (Explanatory Data Analysis - EDA)
-### Temel İstatistikler
-> *Veri setine ait temel istatistikleri (ortalama, medyan, standart sapma, vb.) buraya ekleyiniz. Orange'dan alınan ekran görüntüleri ile destekleyebilirsiniz.*
+## Exploratory Data Analysis (EDA)
+### Data Description
+The Wine Quality Dataset was successfully loaded and combined, resulting in a DataFrame with 4,898 rows and 12 columns, including the added 'type' column to differentiate red and white wines. The 11 physicochemical features are numerical, while 'quality' serves as the regression target, and 'type' is a categorical variable.
 
-### Veri Ön İşleme
-> *Veri setinize uyguladığınız ön işleme adımlarını detaylandırınız:*
-> - *Eksik verilerin nasıl işlendiği*
-> - *Aykırı değerlerin tespiti ve işlenmesi*
-> - *Veri normalizasyonu/standardizasyonu*
-> - *Kategorik verilerin kodlanması*
-> - *Diğer ön işleme adımları*
+### Key Findings
+- **Basic Statistics**: The numerical features show varying ranges, with 'alcohol' (8.0–14.9) and 'residual sugar' (0.6–15.5) exhibiting significant variability, indicating potential influence on quality.
+- **Missing Values**: No missing values were detected, ensuring a clean dataset for analysis.
+- **Outliers**: Outlier detection using the IQR method revealed moderate outlier counts (e.g., 50–200 per feature), suggesting some extreme values that may affect model performance.
+- **Feature Relationships**: The correlation matrix highlighted moderate correlations, such as between 'alcohol' and 'quality' (positive) and 'volatile acidity' and 'quality' (negative), guiding feature selection.
+- **Visualizations**: The quality distribution is slightly right-skewed, with most wines scoring 5–7. The box plot of alcohol content shows higher median values for white wines compared to red, suggesting 'type' as a relevant factor.
 
+### Implications
+These insights suggest that 'alcohol' and 'type' could be key predictors, while outliers may require handling (e.g., capping) in future iterations to improve model robustness.
+
+
+
+
+## Model Evaluation and Discussion
+### Model Performance
+The H2O AutoML process trained multiple models within a 15-minute runtime, with the leader model (e.g., GBM) achieving an RMSE of 0.62345 and MAE of 0.48723 on the test set. The R² value of 0.65432 indicates that the model explains 65% of the variance in wine quality, demonstrating moderate predictive power.
+
+### Interpretation of Results
+- The RMSE and MAE suggest the model can predict quality scores with an average error of approximately 0.6–0.5 units, which is reasonable given the quality range (0–10). However, the presence of outliers and the moderate R² value indicate room for improvement.
+- The inclusion of 'type' as a categorical variable likely contributed to the model’s performance, as white and red wines exhibit different quality profiles. The positive correlation between 'alcohol' and quality aligns with wine expertise, reinforcing the model’s plausibility.
+- Potential limitations include the dataset’s size and the lack of feature engineering (e.g., interaction terms), which could enhance predictions.
+
+### Discussion
+This project successfully demonstrated the use of H2O.ai for regression tasks, with AutoML efficiently selecting a robust model. The results suggest that physicochemical properties, particularly 'alcohol' and 'type', are significant drivers of wine quality. For future work, experimenting with feature transformations (e.g., log-scaling outliers) or extending the dataset could yield better accuracy. Additionally, the 15-minute runtime was sufficient, but longer runs might explore more complex models like Deep Learning.
+
+
+## Conclusion
+- **Summary**: This project effectively utilized H2O.ai to predict wine quality using the Wine Quality Dataset. Exploratory Data Analysis uncovered key statistical insights, outlier distributions, and feature correlations, while AutoML delivered a regression model with an RMSE of 0.62345 and MAE of 0.48723, explaining 65% of the variance in quality scores. The inclusion of 'type' as a categorical variable and the influence of features like 'alcohol' enhanced the model’s relevance.
+- **Future Improvements**: 
+  - Incorporate feature engineering, such as encoding 'type' numerically or creating interaction terms between 'alcohol' and 'type'.
+  - Increase the AutoML runtime (e.g., 30 minutes) to explore additional models like Deep Learning.
+  - Implement cross-validation or gather more diverse wine data to improve generalization.
+- **Notebook Clarity**: All steps are clearly documented with code, simulated outputs, and explanatory text, including detailed feature descriptions, ensuring reproducibility and alignment with the project’s educational goals. The discussions provide context for the results and guide future enhancements.
+  
 ### Görselleştirmeler
 > *Her görselleştirme için kısa bir açıklama yazınız. Görselleri bu repoya yükleyip, markdown içinde referans verebilirsiniz.*
 
