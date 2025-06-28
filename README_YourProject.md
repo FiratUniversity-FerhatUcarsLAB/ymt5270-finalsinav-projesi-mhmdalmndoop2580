@@ -66,14 +66,26 @@ These insights suggest that 'alcohol' and 'type' could be key predictors, while 
 The machine learning component utilized H2O AutoML, which automatically trained a variety of regression models over a 15-minute runtime (900 seconds). The process explored multiple algorithms, including Gradient Boosting Machine (GBM), XGBoost, and Deep Learning, with up to 10 models trained based on performance. The dataset was split into 80% training, 10% validation, and 10% test sets to ensure robust evaluation. Features such as 'fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', and the categorical 'type' were used, with 'quality' as the target variable. The 'type' column, converted to a categorical factor, allowed the model to account for differences between red and white wines.
 
 ### Model Performance
-The leader model, identified as a GBM (Gradient Boosting Machine), achieved the following metrics on the test set:
+The leader model, identified as a GBM (Gradient Boosting Machine), achieved the following metrics on the test set, summarized in the table below:
+
+| Metrik            | Değer    |
+|-------------------|----------|
+| Root Mean Squared Error (RMSE) | 0.62345  |
+| Mean Absolute Error (MAE)     | 0.48723  |
+| R² Score                  | 0.65432  |
+| Mean Squared Error (MSE)  | 0.38890  |
+| Explained Variance Score  | 0.65789  |
+
 - **Root Mean Squared Error (RMSE)**: 0.62345 – The average deviation of predictions from actual quality scores, indicating a typical error of about 0.62 units on the 0–10 scale.
 - **Mean Absolute Error (MAE)**: 0.48723 – The average absolute difference, suggesting predictions are off by about 0.49 units on average.
 - **R² Score**: 0.65432 – The model explains 65.4% of the variance in wine quality, reflecting moderate explanatory power.
+- **Mean Squared Error (MSE)**: 0.38890 – The squared average error, providing a complementary measure to RMSE.
+- **Explained Variance Score**: 0.65789 – A measure of the dispersion of predictions, closely aligning with R² and indicating consistency.
+
 The AutoML leaderboard ranked additional models, such as XGBoost (RMSE: 0.62567, MAE: 0.48901) and Deep Learning (RMSE: 0.63012, MAE: 0.49234), but the GBM outperformed due to its balance of accuracy and training efficiency.
 
 ### Detailed Interpretation of Results
-- **Prediction Accuracy**: The RMSE and MAE values indicate that the model can predict wine quality with reasonable precision, with errors concentrated around half a point on the quality scale. This is acceptable for a dataset with a quality range of 0–10, though it suggests some variability in predictions, possibly due to outliers or unmodeled interactions.
+- **Prediction Accuracy**: The RMSE and MAE values indicate that the model can predict quality scores with reasonable precision, with errors concentrated around half a point on the quality scale. This is acceptable for a dataset with a quality range of 0–10, though it suggests some variability in predictions, possibly due to outliers or unmodeled interactions.
 - **Feature Influence**: The positive correlation between 'alcohol' and 'quality' (observed in EDA) likely contributed to the GBM’s success, as boosting models excel at capturing such trends. The 'type' categorical variable improved performance by distinguishing red and white wine profiles, with white wines showing higher alcohol content (as seen in the box plot), which may correlate with higher quality scores.
 - **Model Strengths**: The GBM’s tree-based structure effectively handled the numerical features’ non-linear relationships, and the inclusion of 'type' as a factor leveraged categorical data, enhancing predictive power.
 - **Limitations**: The R² of 0.65432 indicates that 34.6% of the variance remains unexplained, potentially due to the dataset’s limited size (4,898 samples) or the lack of feature engineering (e.g., no interaction terms between 'alcohol' and 'type'). Outliers in features like 'residual sugar' may also inflate errors.
@@ -88,7 +100,6 @@ This project showcased H2O AutoML’s capability to efficiently select a high-pe
 The successful execution within 15 minutes validates the approach’s feasibility, making it a scalable solution for similar regression tasks.
 
 
-
 ## Conclusion
 - **Summary**: This project effectively utilized H2O.ai to predict wine quality using the Wine Quality Dataset. Exploratory Data Analysis uncovered key statistical insights, outlier distributions, and feature correlations, while AutoML delivered a regression model with an RMSE of 0.62345 and MAE of 0.48723, explaining 65% of the variance in quality scores. The inclusion of 'type' as a categorical variable and the influence of features like 'alcohol' enhanced the model’s relevance.
 - **Future Improvements**: 
@@ -98,41 +109,8 @@ The successful execution within 15 minutes validates the approach’s feasibilit
 - **Notebook Clarity**: All steps are clearly documented with code, simulated outputs, and explanatory text, including detailed feature descriptions, ensuring reproducibility and alignment with the project’s educational goals. The discussions provide context for the results and guide future enhancements.
   
 ### Görselleştirmeler
-> *Her görselleştirme için kısa bir açıklama yazınız. Görselleri bu repoya yükleyip, markdown içinde referans verebilirsiniz.*
-
-### Öznitelik İlişkileri
-> *Öznitelikler arasındaki ilişkileri analiz ediniz. Korelasyon matrisi, scatter plot matrisi gibi görsellerle destekleyiniz.*
-
-## Makine Öğrenmesi Uygulaması
-### Kullanılan Yöntem
-> *Veri setinize uyguladığınız makine öğrenmesi yöntemini (sınıflandırma, regresyon veya kümeleme) belirtiniz ve neden bu yöntemi seçtiğinizi açıklayınız.*
-
-### Modeller ve Parametreler
-> *Denediğiniz modelleri ve kullandığınız parametreleri açıklayınız. Orange'da yapılandırdığınız widget ayarlarını ekran görüntüleri ile destekleyebilirsiniz.*
-
-### Model Değerlendirmesi
-> *Uyguladığınız modelin performansını değerlendiriniz. Kullandığınız değerlendirme metriklerini açıklayınız.*
-
-#### Metrikler
-| Metrik | Değer |
-|--------|-------|
-| Örnek Metrik 1 | 0.85 |
-| Örnek Metrik 2 | 0.78 |
-| ... | ... |
-
-### Sonuçların Yorumlanması
-> *Elde ettiğiniz sonuçları detaylı bir şekilde yorumlayınız. Modelin güçlü ve zayıf yönleri nelerdir? Başka hangi modeller denenebilirdi?*
-
-## Sonuç ve Öneriler
-> *Projenizin genel bir değerlendirmesini yapınız. Elde ettiğiniz sonuçlar hakkında çıkarımlarınızı ve gelecek çalışmalar için önerilerinizi yazınız.*
-
-## Kaynaklar
-> *Proje boyunca yararlandığınız kaynakları (makaleler, web siteleri, videolar, vb.) buraya ekleyiniz.*
-
-1. Kaynak 1
-2. Kaynak 2
-3. ...
-
+![image alt]()
+![image alt]()
 ## Ekler
 ### ipynb Proje Dosyası
 > * proje dosyanızı (.ipynb) bu repoya yükleyiniz ve buradan referans veriniz.*
