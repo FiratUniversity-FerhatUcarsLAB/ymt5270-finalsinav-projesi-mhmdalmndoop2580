@@ -1,29 +1,49 @@
 # YMT5270 Final Sınav Projesi: H2O ile Veri Analizi ve Makine Öğrenmesi
 
 ## Öğrenci Bilgileri
-- **Ad Soyad**: 
-- **Öğrenci Numarası**: 
-- **E-posta**: 
+- **Ad Soyad**: Mohammed Abduljalil Saeed Ahmed 
+- **Öğrenci Numarası**: 231137132
+- **E-posta**: www.mhmmdalmndoop@gmail.com
 
 ## Proje Özeti
-> *Bu bölümde projenizin genel bir özetini yazınız. Hangi veri setini neden seçtiğinizi, hangi analiz yöntemlerini uyguladığınızı ve genel sonuçlarınızı kısaca açıklayınız (150-250 kelime).*
+> *This project is the final assignment for the YMT5270 - Yenilikçi Makine Öğrenme Ortamları course, where the goal is to leverage the H2O.ai platform to perform a comprehensive data analysis and machine learning application on an open-access dataset. The chosen dataset, the Wine Quality Dataset, contains 4,898 examples of red and white wines with 11 physicochemical features and a quality score (0-10) as the target variable. The primary objective is to develop a regression model to predict wine quality, demonstrating the use of exploratory data analysis (EDA), H2O AutoML, and result interpretation.*
 
 ## Veri Seti
 ### Veri Seti Bilgileri
-- **Veri Seti Adı**: 
-- **Kaynak**: *(URL veya referans)*
-- **Lisans**: *(Eğer belirtilmişse)*
-- **Veri Seti Boyutu**: *(örn. 500 satır, 10 sütun)*
+- **Wine Quality Dataset**: 
+- **Kaynak**: *(https://archive.ics.uci.edu/dataset/186/wine+quality)*
+- **Veri Seti Boyutu**: *(örn. 3640 satır, 11 sütun)*
 
-### Veri Seti Tanımı
-> *Veri setinin içeriğini detaylı olarak açıklayınız. Hangi öznitelikleri içerdiği, verilerin nasıl toplandığı, olası sınırlılıkları gibi bilgileri buraya yazınız.*
+# Final Project: Wine Quality Prediction with H2O.ai
+
+## Project Overview
+This project is the final assignment for the YMT5270 - Yenilikçi Makine Öğrenme Ortamları course, where the goal is to leverage the H2O.ai platform to perform a comprehensive data analysis and machine learning application on an open-access dataset. The chosen dataset, the Wine Quality Dataset, contains 4,898 examples of red and white wines with 11 physicochemical features and a quality score (0-10) as the target variable. The primary objective is to develop a regression model to predict wine quality, demonstrating the use of exploratory data analysis (EDA), H2O AutoML, and result interpretation.
+
+## Introduction
+- **Dataset**: Wine Quality Dataset
+- **Source**: https://archive.ics.uci.edu/dataset/186/wine+quality
+- **License**: Public domain
+- **Details**: The dataset includes 3,640 red wine and 1,258 white wine samples, each with 11 features such as fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, and alcohol, alongside a quality score (0-10) as the target. A 'type' column was added to distinguish red and white wines.
+- **Goal**: Utilize H2O.ai to build and evaluate a regression model for predicting wine quality, showcasing EDA techniques, model training, and performance analysis.
+- **Methodology**: The project involves loading and combining the datasets, performing EDA to understand data distributions and relationships, applying H2O AutoML for model training, and interpreting the results to derive actionable insights.
 
 ### Öznitelik Açıklamaları
-| Öznitelik Adı | Veri Tipi | Açıklama | Örnek Değer |
-|---------------|-----------|----------|-------------|
-| Örnek Öznitelik 1 | Sayısal | İlgili açıklama | 42.5 |
-| Örnek Öznitelik 2 | Kategorik | İlgili açıklama | "Evet" |
-| ... | ... | ... | ... |
+| Öznitelik Adı       | Veri Tipi  | Açıklama                                      | Örnek Değer |
+|----------------------|------------|-----------------------------------------------|-------------|
+| fixed acidity       | Sayısal    | The amount of fixed acids in the wine (g/dm³) | 7.4         |
+| volatile acidity    | Sayısal    | The amount of volatile acids (g/dm³)          | 0.7         |
+| citric acid         | Sayısal    | The concentration of citric acid (g/dm³)      | 0.0         |
+| residual sugar      | Sayısal    | The sugar content remaining after fermentation (g/dm³) | 1.9   |
+| chlorides           | Sayısal    | The salt content in the wine (g/dm³)          | 0.076       |
+| free sulfur dioxide | Sayısal    | Free sulfur dioxide content (mg/dm³)          | 11.0        |
+| total sulfur dioxide| Sayısal    | Total sulfur dioxide content (mg/dm³)         | 34.0        |
+| density             | Sayısal    | The density of the wine (g/cm³)               | 0.9978      |
+| pH                  | Sayısal    | The acidity level of the wine (pH scale)      | 3.51        |
+| sulphates           | Sayısal    | The potassium sulphate content (g/dm³)        | 0.56        |
+| alcohol             | Sayısal    | The alcohol percentage by volume (%)          | 9.4         |
+| quality             | Sayısal    | The sensory quality score (0-10)              | 5           |
+| type                | Kategorik  | The wine type (red or white)                  | "red"       |
+
 
 ## Keşifsel Veri Analizi (Explanatory Data Analysis - EDA)
 ### Temel İstatistikler
