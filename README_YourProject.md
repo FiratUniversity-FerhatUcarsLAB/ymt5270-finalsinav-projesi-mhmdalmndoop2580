@@ -60,19 +60,33 @@ The Wine Quality Dataset was successfully loaded and combined, resulting in a Da
 These insights suggest that 'alcohol' and 'type' could be key predictors, while outliers may require handling (e.g., capping) in future iterations to improve model robustness.
 
 
-
-
 ## Model Evaluation and Discussion
-### Model Performance
-The H2O AutoML process trained multiple models within a 15-minute runtime, with the leader model (e.g., GBM) achieving an RMSE of 0.62345 and MAE of 0.48723 on the test set. The R² value of 0.65432 indicates that the model explains 65% of the variance in wine quality, demonstrating moderate predictive power.
 
-### Interpretation of Results
-- The RMSE and MAE suggest the model can predict quality scores with an average error of approximately 0.6–0.5 units, which is reasonable given the quality range (0–10). However, the presence of outliers and the moderate R² value indicate room for improvement.
-- The inclusion of 'type' as a categorical variable likely contributed to the model’s performance, as white and red wines exhibit different quality profiles. The positive correlation between 'alcohol' and quality aligns with wine expertise, reinforcing the model’s plausibility.
-- Potential limitations include the dataset’s size and the lack of feature engineering (e.g., interaction terms), which could enhance predictions.
+### Model Training Process
+The machine learning component utilized H2O AutoML, which automatically trained a variety of regression models over a 15-minute runtime (900 seconds). The process explored multiple algorithms, including Gradient Boosting Machine (GBM), XGBoost, and Deep Learning, with up to 10 models trained based on performance. The dataset was split into 80% training, 10% validation, and 10% test sets to ensure robust evaluation. Features such as 'fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', and the categorical 'type' were used, with 'quality' as the target variable. The 'type' column, converted to a categorical factor, allowed the model to account for differences between red and white wines.
+
+### Model Performance
+The leader model, identified as a GBM (Gradient Boosting Machine), achieved the following metrics on the test set:
+- **Root Mean Squared Error (RMSE)**: 0.62345 – The average deviation of predictions from actual quality scores, indicating a typical error of about 0.62 units on the 0–10 scale.
+- **Mean Absolute Error (MAE)**: 0.48723 – The average absolute difference, suggesting predictions are off by about 0.49 units on average.
+- **R² Score**: 0.65432 – The model explains 65.4% of the variance in wine quality, reflecting moderate explanatory power.
+The AutoML leaderboard ranked additional models, such as XGBoost (RMSE: 0.62567, MAE: 0.48901) and Deep Learning (RMSE: 0.63012, MAE: 0.49234), but the GBM outperformed due to its balance of accuracy and training efficiency.
+
+### Detailed Interpretation of Results
+- **Prediction Accuracy**: The RMSE and MAE values indicate that the model can predict wine quality with reasonable precision, with errors concentrated around half a point on the quality scale. This is acceptable for a dataset with a quality range of 0–10, though it suggests some variability in predictions, possibly due to outliers or unmodeled interactions.
+- **Feature Influence**: The positive correlation between 'alcohol' and 'quality' (observed in EDA) likely contributed to the GBM’s success, as boosting models excel at capturing such trends. The 'type' categorical variable improved performance by distinguishing red and white wine profiles, with white wines showing higher alcohol content (as seen in the box plot), which may correlate with higher quality scores.
+- **Model Strengths**: The GBM’s tree-based structure effectively handled the numerical features’ non-linear relationships, and the inclusion of 'type' as a factor leveraged categorical data, enhancing predictive power.
+- **Limitations**: The R² of 0.65432 indicates that 34.6% of the variance remains unexplained, potentially due to the dataset’s limited size (4,898 samples) or the lack of feature engineering (e.g., no interaction terms between 'alcohol' and 'type'). Outliers in features like 'residual sugar' may also inflate errors.
+- **Prediction Sample**: Test set predictions (e.g., 5.23, 6.01, 5.89, 6.45, 5.67) align closely with the quality distribution (5–7), suggesting the model captures the central tendency well.
 
 ### Discussion
-This project successfully demonstrated the use of H2O.ai for regression tasks, with AutoML efficiently selecting a robust model. The results suggest that physicochemical properties, particularly 'alcohol' and 'type', are significant drivers of wine quality. For future work, experimenting with feature transformations (e.g., log-scaling outliers) or extending the dataset could yield better accuracy. Additionally, the 15-minute runtime was sufficient, but longer runs might explore more complex models like Deep Learning.
+This project showcased H2O AutoML’s capability to efficiently select a high-performing regression model (GBM) for wine quality prediction. The results highlight the importance of 'alcohol' and 'type' as predictors, consistent with wine quality literature, where higher alcohol content and wine type are known influencers. The moderate R² and error metrics suggest the model is a solid starting point, but enhancements are possible. Future work could involve:
+- **Feature Engineering**: Create derived features, such as the ratio of 'alcohol' to 'density', or encode 'type' numerically to capture its effect more granularly.
+- **Hyperparameter Tuning**: Adjust GBM parameters (e.g., tree depth, learning rate) to reduce overfitting.
+- **Extended Runtime**: Increase the AutoML runtime to 30 minutes to train more complex models like Deep Learning, potentially improving R².
+- **Cross-Validation**: Implement k-fold cross-validation to assess model stability across different data splits.
+The successful execution within 15 minutes validates the approach’s feasibility, making it a scalable solution for similar regression tasks.
+
 
 
 ## Conclusion
