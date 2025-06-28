@@ -109,8 +109,8 @@ The successful execution within 15 minutes validates the approach’s feasibilit
 - **Notebook Clarity**: All steps are clearly documented with code, simulated outputs, and explanatory text, including detailed feature descriptions, ensuring reproducibility and alignment with the project’s educational goals. The discussions provide context for the results and guide future enhancements.
   
 ### Görselleştirmeler
-![image alt]()
-![image alt]()
+![image alt](https://github.com/FiratUniversity-FerhatUcarsLAB/ymt5270-finalsinav-projesi-mhmdalmndoop2580/blob/main/result1.png?raw=true)
+![image alt](https://github.com/FiratUniversity-FerhatUcarsLAB/ymt5270-finalsinav-projesi-mhmdalmndoop2580/blob/main/result2.png?raw=true)
 ## Ekler
 ### ipynb Proje Dosyası
 > * proje dosyanızı (.ipynb) bu repoya yükleyiniz ve buradan referans veriniz.*
